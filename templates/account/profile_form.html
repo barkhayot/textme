@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<style>
+    .divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+}
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}
+</style>
+
+
+<div class="container">
+    <div class="main-body">
+        
+        <h4 class="card-title mt-3 text-center">Edit Profile</h4>
+        <hr>
+        <br>
+    
+    
+
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                    <img class="avatar avatar--md" src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Round&hairColor=SilverGray&facialHairType=BeardLight&facialHairColor=Auburn&clotheType=BlazerSweater&eyeType=Default&eyebrowType=UnibrowNatural&mouthType=Twinkle&skinColor=Tanned" alt="image" width="150" />                    <div class="mt-3">
+                    <h4>{{profile.name}}</h4>
+                    <p class="text-secondary mb-1">{{profile.bio}}</p>
+                    <p class="text-muted font-size-sm">{{profile.location}}</p>
+                    <p class="text-muted font-size-sm">{{profile.email}}</p>
+                    <p class="text-muted font-size-sm">{{profile.phone}}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card mb-3">
+                <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                    <form method="POST"  action="">
+                        {% csrf_token %}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Name: </span>
+                        </div>
+                        {{form.name}}
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Email : </span>
+                        </div>
+                        {{form.email}}
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Location : </span>
+                        </div>
+                        {{form.location}}
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Phone : </span>
+                        </div>
+                        {{form.phone}}
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Bio : </span>
+                        </div>
+                        {{form.bio}}
+                    </div> <!-- form-group// -->                                      
+                    <div class="form-group">
+                        <button type="submit" class="btn  btn-block" style="border-radius: 50px; background-color: #128C7E; color: white;"> Save  </button>
+                    </div> <!-- form-group// -->      
+                    <p class="text-center">Please check your infor before you save data.</p>                                                                 
+                </form>
+                {{form.errors}}
+                </article>
+                
+                </div> <!-- card.// -->
+                </div>
+            </div>
+
+
+{% endblock %}
